@@ -1,0 +1,9 @@
+Crear los paneles necesarios para la configuración de una nueva rutina
+Crear los páneles faltantes (sin Internet, cerrar sesión, confirmación de los parámetros de la rutina, etc.)
+
+En el script InterfazMedico 
+Modificar:
+	Agregar las variables privadas necesarias para la configuración de la rutina (nivel, dificultad, tipo de movimiento, número de repeticiones, etc.)
+   Funciones:
+	MuestraParametros()
+	ActualizaRutina()

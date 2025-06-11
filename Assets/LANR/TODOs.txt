@@ -1,0 +1,58 @@
+Cosas por cambiar:
+
+No cambiar el nombre de la escena Estadísticas1
+
+clase GameMaster--------------------------
+
+   variables:
+	-rutaDeArchivos--------------------------
+	-escenaDeDondeVengo
+	-escenarioElegido //cambialo por lo que sea que se pueda elegir
+   funciones:
+	-AsignaParametrosParaJugar
+	-GuardaResultadosDePartida
+
+
+clase Partida ------------
+	-poner todas las cosas que se van a guardar en cada juego
+
+clase RutinaData (en el modelo Bere) -----------------------
+	-poner todas las cosas que se pueden configurar desde la Interfaz del Terapeuta 
+	(nota, en esta interfaz no se puede elegir por ejemplo el escenario o el personaje)
+
+
+clase PartidasTerminator (agregar a un GO de la escena del juego, SceneController lo lllama con un evento)--------------
+    funciones:
+	-modificar OnEnable y OnDisable para que los administradores de las escenas Escenas de Juego 
+	llamen por medio de un evento a la función IntentaSubirLaPartidaA_CITAN cuando termine la
+	partida
+	-CreaContenedorDeLaPartidaJugada //solo me interesa guardar en un objeo todo lo que se subirA A CITAN
+
+	
+clase DireccionesURL DONE ---------------
+  variables:
+	-obtenResultadosJuego
+	-insertaPartidasEnBD
+	-DirectorioRutinasJuego
+
+	
+
+clase AduanaCITAN
+  funciones:
+	-SubePartidasA_CITAN
+	-DescargaRutina
+	-RevisaSiTieneRutinaAsignada
+	-DescargaRutinasTerapeuta  * despues
+	-SubeRutinaAlServidor
+
+clase ManejadorXMLs
+  funciones:
+	-CreaContenedorDelHistorialPartidas
+	-BorraRutinasPrevias
+	-CreaXMLRutina
+
+clase AdminEstadisticas
+  funciones:
+	Start()
+	MoreInfoPartidapersonalizada()
+	Continuar()

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: 4a1f9e50e5b0f4a4fbb14df52227e30d
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 9d123ba680be90b49bc742036647219c
+  - enabled: 1
+    path: Assets/Scenes/HandSetting.unity
+    guid: 8e78efd78f40c7748abff25f9f5a18c4
+  - enabled: 1
+    path: Assets/Scenes/Calibrar.unity
+    guid: 118380f5f85c614478f35b802199e26d
+  - enabled: 1
+    path: Assets/Scenes/Resultados.unity
+    guid: cfd59bacda458404da217f3e760ac45b
+  - enabled: 1
+    path: Assets/Scenes/Estadisticas1.unity
+    guid: 2d19501efd9fcb346bcfca147a2d8d56
+  - enabled: 1
+    path: Assets/Scenes/Terapeuta.unity
+    guid: 8fe389582f9c151418fbe45b69d3ca21
+  - enabled: 1
+    path: Assets/Scenes/Paciente.unity
+    guid: 070271c5fd251e9499964e67501b25e0
+  m_configObjects: {}
