@@ -130,14 +130,14 @@ public class SettingsController : MonoBehaviour
             settingsGame.nombreMovimiento != SettingsModelValuesRoot.Movimiento.CTM)
         {
             spawnOrderDropdown.gameObject.SetActive(false);
-            numberSetsDropdown.gameObject.transform.localPosition = new Vector3(200, 120, 0);
-            restTimeDropdown.gameObject.transform.localPosition = new Vector3(-200, -30, 0);
+            numberSetsDropdown.gameObject.transform.localPosition = new Vector3(240, 90, 0);
+            restTimeDropdown.gameObject.transform.localPosition = new Vector3(-143, -77, 0);
         }
         else
         {
             spawnOrderDropdown.gameObject.SetActive(true);
-            numberSetsDropdown.gameObject.transform.localPosition = new Vector3(-200, -30, 0);
-            restTimeDropdown.gameObject.transform.localPosition = new Vector3(200, -30, 0);
+            numberSetsDropdown.gameObject.transform.localPosition = new Vector3(-143, -77, 0);
+            restTimeDropdown.gameObject.transform.localPosition = new Vector3(240, -90, 0);
 
         }
         Debug.Log("Se guardo configuración de tipo de movimiento: " + movementType);
