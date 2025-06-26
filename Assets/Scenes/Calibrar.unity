@@ -335,10 +335,10 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli2hted
+    m_HighlightedTrigger: Highli0hted
     m_PressedTrigger: Presse0
-    m_SelectedTrigger: Select9d
-    m_DisabledTrigger: Disabl0d
+    m_SelectedTrigger: Select/d
+    m_DisabledTrigger: Disabl8d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 79620265}
   m_OnClick:
@@ -499,7 +499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_TagString
@@ -527,43 +527,83 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0074997544
+      value: 0.26232588
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.004999995
+      value: -0.21536434
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.059999943
+      value: 0.20399451
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 0.48127863
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: 0.38507688
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: 0.4766723
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5
+      value: -0.6267936
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 104.48599
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 174.517
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 70.788994
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0087
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0076
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0069
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.29170662
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.4957008
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6717365
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.46685982
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -19.756
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 114.742
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 85.57301
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce6112dd14179d448958c91c5b4e8de2, type: 3}
@@ -689,7 +729,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Derecha: '
+  m_Text: 'Derech6: '
 --- !u!222 &149022308
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1099,10 +1139,10 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli/hted
-    m_PressedTrigger: Presse.
-    m_SelectedTrigger: Select0d
-    m_DisabledTrigger: Disabl0d
+    m_HighlightedTrigger: Highli6hted
+    m_PressedTrigger: Presse2
+    m_SelectedTrigger: Select/d
+    m_DisabledTrigger: Disabl-d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 330639434}
   m_OnClick:
@@ -1589,9 +1629,9 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli/hted
-    m_PressedTrigger: Presse.
-    m_SelectedTrigger: Select0d
+    m_HighlightedTrigger: Highli7hted
+    m_PressedTrigger: Presse6
+    m_SelectedTrigger: Select5d
     m_DisabledTrigger: Disabl0d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 572138674}
@@ -1599,7 +1639,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1173600090}
-        m_MethodName: LoadScene
+        m_MethodName: LoadSc4ne
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1793,7 +1833,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Izquierda: '
+  m_Text: 'Izquie.da: '
 --- !u!222 &659316767
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2117,10 +2157,10 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli2hted
-    m_PressedTrigger: Presse0
-    m_SelectedTrigger: Select9d
-    m_DisabledTrigger: Disabl0d
+    m_HighlightedTrigger: Highli9hted
+    m_PressedTrigger: Presse3
+    m_SelectedTrigger: Select1d
+    m_DisabledTrigger: Disabl/d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 819453635}
   m_OnClick:
@@ -2243,7 +2283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Abajo: '
+  m_Text: Abajo:0
 --- !u!222 &900050372
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2999,7 +3039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3100,10 +3140,10 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli2hted
-    m_PressedTrigger: Presse0
-    m_SelectedTrigger: Select9d
-    m_DisabledTrigger: Disabl0d
+    m_HighlightedTrigger: Highli7hted
+    m_PressedTrigger: Presse4
+    m_SelectedTrigger: Select5d
+    m_DisabledTrigger: Disabl2d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1526308258}
   m_OnClick:
@@ -3139,8 +3179,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f22ee6e9549cfb3448eb30be11f0a4e5, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3230,17 +3270,17 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli2hted
-    m_PressedTrigger: Presse0
-    m_SelectedTrigger: Select9d
-    m_DisabledTrigger: Disabl0d
+    m_HighlightedTrigger: Highli9hted
+    m_PressedTrigger: Presse/
+    m_SelectedTrigger: Select0d
+    m_DisabledTrigger: Disabl-d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1545345282}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1173600090}
-        m_MethodName: LoadScene
+        m_MethodName: LoadSc.ne
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3269,8 +3309,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f22ee6e9549cfb3448eb30be11f0a4e5, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3356,7 +3396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Continuar
+  m_Text: Contin0ar
 --- !u!222 &1564083004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3792,10 +3832,10 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli/hted
-    m_PressedTrigger: Presse.
+    m_HighlightedTrigger: Highli1hted
+    m_PressedTrigger: Presse3
     m_SelectedTrigger: Select0d
-    m_DisabledTrigger: Disabl0d
+    m_DisabledTrigger: Disabl7d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1695539459}
   m_OnClick:
@@ -3918,7 +3958,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Arriba: '
+  m_Text: 'Arriba0 '
 --- !u!222 &1742278097
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4210,10 +4250,10 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli/hted
-    m_PressedTrigger: Presse.
-    m_SelectedTrigger: Select0d
-    m_DisabledTrigger: Disabl0d
+    m_HighlightedTrigger: Highli9hted
+    m_PressedTrigger: Presse5
+    m_SelectedTrigger: Select3d
+    m_DisabledTrigger: Disabl/d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1834905412}
   m_OnClick:
@@ -4414,7 +4454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100054, guid: 5413bab15c3dd4a4085a9fe254a17e96, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100054, guid: 5413bab15c3dd4a4085a9fe254a17e96, type: 3}
       propertyPath: m_TagString
@@ -4821,7 +4861,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Comenzar
+  m_Text: Comenz-r
 --- !u!222 &2012872782
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4899,7 +4939,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Conectar
+  m_Text: Conector
 --- !u!222 &2040934136
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4981,10 +5021,10 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highli6hted
-    m_PressedTrigger: Presse9
-    m_SelectedTrigger: Select/d
-    m_DisabledTrigger: Disabl0d
+    m_HighlightedTrigger: Highli4hted
+    m_PressedTrigger: Presse1
+    m_SelectedTrigger: Select9d
+    m_DisabledTrigger: Disabl8d
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2058885912}
   m_OnClick:
@@ -5088,7 +5128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5212,7 +5252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2108457285
 MonoBehaviour:
   m_ObjectHideFlags: 0

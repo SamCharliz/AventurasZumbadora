@@ -399,7 +399,7 @@ public class Giroscopio : MonoBehaviour
         padreCajas.transform.rotation = Quaternion.Euler(angR2.eulerAngles.x * -1, 0f, 0f); // Saber rotación de cubos
         var anguloMinimoCalibracion = -10;
         var anguloMaximoCalibracion = 10;
-        if (angR2.eulerAngles.x * -1 < anguloMinimoCalibracion || 
+        if (angR2.eulerAngles.x * -1 < anguloMinimoCalibracion ||
             angR2.eulerAngles.x * -1 > anguloMaximoCalibracion)
         {
             BeeRotated();
@@ -430,17 +430,17 @@ public class Giroscopio : MonoBehaviour
             if (isRotated && configuracionJuego.mano == "Derecha")
             {
                 // derecha
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
             }
             else if (isRotated && configuracionJuego.mano == "Izquierda")
             {
                 // izquierda
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
             }
             else
             {
                 // arriba
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ARRIBA);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ABAJO);
             }
         }
         else if (isDown)
@@ -448,17 +448,17 @@ public class Giroscopio : MonoBehaviour
             if (isRotated && configuracionJuego.mano == "Derecha")
             {
                 // izquierda
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
             }
             else if (isRotated && configuracionJuego.mano == "Izquierda")
             {
                 // derecha
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
             }
             else
             {
                 // abajo
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ABAJO);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ARRIBA);
             }
         }
         else
@@ -480,9 +480,9 @@ public class Giroscopio : MonoBehaviour
 
                 MuestraMovimiento();
                 GuardarCalibracion();
-            } 
+            }
         }
-        
+
     }
 
     List<float> calibrationValues = new List<float>();
