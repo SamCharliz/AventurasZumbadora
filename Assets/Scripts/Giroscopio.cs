@@ -394,7 +394,7 @@ public class Giroscopio : MonoBehaviour
         pivoteCuboAzul.transform.localRotation = Quaternion.Euler(eulerBlue.x, eulerBlue.y*-1f, eulerBlue.z*-1f);  
         */
 
-        //pivoteCuboRojo.transform.rotation = angR2; // este es el brazo
+        pivoteCuboRojo.transform.rotation = angR2; // este es el brazo
 
         padreCajas.transform.rotation = Quaternion.Euler(angR2.eulerAngles.x * -1, 0f, 0f); // Saber rotación de cubos
         var anguloMinimoCalibracion = -10;
@@ -427,38 +427,38 @@ public class Giroscopio : MonoBehaviour
 
         if (isUp)
         {
-            if (isRotated && configuracionJuego.mano == "Derecha")
+            if (isRotated && configuracionJuego.mano == "izquierda")
             {
-                // derecha
+                // IZQUIERDA
                 ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
             }
-            else if (isRotated && configuracionJuego.mano == "Izquierda")
+            else if (isRotated && configuracionJuego.mano == "Derecha")
             {
-                // izquierda
+                // derecha
                 ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
             }
             else
             {
-                // arriba
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ABAJO);
+                // Arriba
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ARRIBA);
             }
         }
         else if (isDown)
         {
-            if (isRotated && configuracionJuego.mano == "Derecha")
+            if (isRotated && configuracionJuego.mano == "Izquierda")
             {
                 // izquierda
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
             }
-            else if (isRotated && configuracionJuego.mano == "Izquierda")
+            else if (isRotated && configuracionJuego.mano == "Derecha")
             {
                 // derecha
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
             }
             else
             {
                 // abajo
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ARRIBA);
+                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ABAJO);
             }
         }
         else
