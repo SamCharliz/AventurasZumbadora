@@ -16,7 +16,7 @@ public class Giroscopio : MonoBehaviour
     public GameObject pivoteCuboRojo;
     public GameObject pivoteCuboAzul;
     public GameObject pivoteCuboAzulEnCuboRojo;
-    public GameObject padreCajas;
+
 
     // Texto que indica si se pudo conectar el sensor
     public Text sensorConcetado;
@@ -56,6 +56,8 @@ public class Giroscopio : MonoBehaviour
 
     public Text Indautor_mensaje;
 
+    public Text RestableciendoCalibracion; // Boton que dirá: "Mantén la posición sin mover la mano..."
+
 
     public Text promedioCalibracionArribaText;
     public Text promedioCalibracionAbajoText;
@@ -67,6 +69,18 @@ public class Giroscopio : MonoBehaviour
     Thread myThread;
     private Animator _animacionCargando;
     Finger _finger_pressed;
+
+
+    List<float> calibrationValues = new List<float>();
+    int counterCalibration = 0;
+    int numeroDeCalibracionesPorMovimiento = 3;
+    public Text indicacionDeMovimientoText;
+    public Text manoEnMovimiento;
+    // Para almacenar resultados
+    private Vector3 baseRotacionAzul; // valores x,y,z cuando la mano está neutra
+    private List<float> angulosExtension = new List<float>();
+    private List<float> angulosFlexion = new List<float>();
+
 
 
 
@@ -396,7 +410,7 @@ public class Giroscopio : MonoBehaviour
 
         pivoteCuboRojo.transform.rotation = angR2; // este es el brazo
 
-        padreCajas.transform.rotation = Quaternion.Euler(angR2.eulerAngles.x * -1, 0f, 0f); // Saber rotación de cubos
+        //padreCajas.transform.rotation = Quaternion.Euler(angR2.eulerAngles.x * -1, 0f, 0f); // Saber rotación de cubos
         var anguloMinimoCalibracion = -10;
         var anguloMaximoCalibracion = 10;
         if (angR2.eulerAngles.x * -1 < anguloMinimoCalibracion ||
@@ -417,6 +431,7 @@ public class Giroscopio : MonoBehaviour
         Vector3 brazo3 = brazoTransform.up;
         float angle3 = Vector3.Angle(mano3, brazo3);
         angle4 = angle3;
+
         //Debug.Log("Up " + (angle3));
 
         //if (Input.GetKey(KeyCode.A))
@@ -425,45 +440,60 @@ public class Giroscopio : MonoBehaviour
         //}
 
 
-        if (isUp)
+        /*  if (isUp)
+         {
+             if (isRotated && configuracionJuego.mano == "izquierda")
+             {
+                 // IZQUIERDA
+                 ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
+             }
+             else if (isRotated && configuracionJuego.mano == "Derecha")
+             {
+                 // derecha
+                 ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
+             }
+             else
+             {
+                 // Arriba
+                 ManoMovimiento(SettingsModelValuesRoot.Orientacion.ARRIBA);
+             }
+         }
+         else if (isDown)
+         {
+             if (isRotated && configuracionJuego.mano == "Izquierda")
+             {
+                 // izquierda
+                 ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
+             }
+             else if (isRotated && configuracionJuego.mano == "Derecha")
+             {
+                 // derecha
+                 ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
+             }
+             else
+             {
+                 // abajo
+                 ManoMovimiento(SettingsModelValuesRoot.Orientacion.ABAJO);
+             }
+         }
+         else
+         {
+             // neutral
+             ManoMovimiento(SettingsModelValuesRoot.Orientacion.NEUTRAL);
+         } */
+
+        //X nos va a decir si la mano esta boca arriba, boca abajo o neutral
+        float anguloX = pivoteCuboAzul.transform.eulerAngles.x;
+        if (anguloX > 300 || anguloX < 60)
         {
-            if (isRotated && configuracionJuego.mano == "izquierda")
-            {
-                // IZQUIERDA
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
-            }
-            else if (isRotated && configuracionJuego.mano == "Derecha")
-            {
-                // derecha
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
-            }
-            else
-            {
-                // Arriba
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ARRIBA);
-            }
+            ManoMovimiento(SettingsModelValuesRoot.Orientacion.ARRIBA);
         }
-        else if (isDown)
+        else if (anguloX > 120 && anguloX < 240)
         {
-            if (isRotated && configuracionJuego.mano == "Izquierda")
-            {
-                // izquierda
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA);
-            }
-            else if (isRotated && configuracionJuego.mano == "Derecha")
-            {
-                // derecha
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA);
-            }
-            else
-            {
-                // abajo
-                ManoMovimiento(SettingsModelValuesRoot.Orientacion.ABAJO);
-            }
+            ManoMovimiento(SettingsModelValuesRoot.Orientacion.ABAJO);
         }
         else
         {
-            // neutral
             ManoMovimiento(SettingsModelValuesRoot.Orientacion.NEUTRAL);
         }
 
@@ -485,11 +515,165 @@ public class Giroscopio : MonoBehaviour
 
     }
 
-    List<float> calibrationValues = new List<float>();
-    int counterCalibration = 0;
-    int numeroDeCalibracionesPorMovimiento = 3;
-    public Text indicacionDeMovimientoText;
-    public Text manoEnMovimiento;
+    private enum EstadoMano
+    {
+        PosIncorrecta,
+        NeutralNormal,
+        NeutralFlexion,
+        NeutralExtension,
+        ArribaNormal,
+        ArribaFlexion,
+        ArribaExtension
+    }
+
+
+    private IEnumerator CalibrarMovimiento(SettingsModelValuesRoot.Orientacion orientacion)
+    {
+        indicacionDeMovimientoText.text = "Coloque la mano hacia " + orientacion.ToString().ToLower() + " y mantenga la posición...";
+
+        float tiempoRequerido = 5f;
+        float tiempoQuieto = 0f;
+        float tolerancia = 2f;
+        float anguloAnterior = 0f;
+        float anguloActual = 0f;
+
+        List<float> muestras = new List<float>();
+
+        while (tiempoQuieto < tiempoRequerido)
+        {
+            anguloActual = Vector3.Angle(manoIzquierdaTransform.up, brazoTransform.up);
+
+            if (Mathf.Abs(anguloActual - anguloAnterior) < tolerancia)
+            {
+                tiempoQuieto += Time.deltaTime;
+                muestras.Add(anguloActual);
+            }
+            else
+            {
+                tiempoQuieto = 0f;
+                muestras.Clear();
+            }
+
+            anguloAnterior = anguloActual;
+            yield return null;
+        }
+
+        float promedio = 0f;
+        foreach (var val in muestras)
+            promedio += val;
+        promedio /= muestras.Count;
+
+        switch (orientacion)
+        {
+            case SettingsModelValuesRoot.Orientacion.ARRIBA:
+                configuracionJuego.anguloArriba = promedio;
+                promedioCalibracionArribaText.text = "Arriba: " + promedio.ToString("F2");
+                break;
+            case SettingsModelValuesRoot.Orientacion.ABAJO:
+                configuracionJuego.anguloAbajo = promedio;
+                promedioCalibracionAbajoText.text = "Abajo: " + promedio.ToString("F2");
+                break;
+            case SettingsModelValuesRoot.Orientacion.IZQUIERDA:
+                configuracionJuego.anguloIzquierda = promedio;
+                promedioCalibracionIzquierdaText.text = "Izquierda: " + promedio.ToString("F2");
+                break;
+            case SettingsModelValuesRoot.Orientacion.DERECHA:
+                configuracionJuego.anguloDerecha = promedio;
+                promedioCalibracionDerechaText.text = "Derecha: " + promedio.ToString("F2");
+                break;
+        }
+
+        Debug.Log("Ángulo calibrado para " + orientacion.ToString() + ": " + promedio.ToString("F2"));
+    }
+
+    private IEnumerator CalibrarNeutro()
+    {
+        indicacionDeMovimientoText.text = "Coloque la mano en posición neutra (boca abajo) y no la mueva durante 5 segundos.";
+
+        float tiempoQuieto = 0f;
+        float tiempoRequerido = 5f;
+        float tolerancia = 1f;
+
+        Vector3 rotacionAnterior = Vector3.zero;
+
+        while (tiempoQuieto < tiempoRequerido)
+        {
+            Vector3 rotacionActual = pivoteCuboAzul.transform.eulerAngles;
+
+            if (Vector3.Distance(rotacionActual, rotacionAnterior) < tolerancia)
+            {
+                tiempoQuieto += Time.deltaTime;
+            }
+            else
+            {
+                tiempoQuieto = 0f;
+            }
+
+            rotacionAnterior = rotacionActual;
+            yield return null;
+        }
+
+        baseRotacionAzul = pivoteCuboAzul.transform.eulerAngles;
+        Debug.Log("Rotación neutra registrada: " + baseRotacionAzul);
+    }
+
+    private IEnumerator CalibrarExtension()
+    {
+        indicacionDeMovimientoText.text = "Realice el movimiento de EXTENSIÓN 3 veces.";
+
+        angulosExtension.Clear();
+        int repeticiones = 0;
+
+        while (repeticiones < 3)
+        {
+            float angulo = Vector3.Angle(pivoteCuboAzul.transform.up, pivoteCuboRojo.transform.up);
+            angulosExtension.Add(angulo);
+            Debug.Log("Extensión: " + angulo.ToString("F2"));
+            repeticiones++;
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        float min = Mathf.Min(angulosExtension.ToArray());
+        configuracionJuego.anguloAbajo = min;
+        promedioCalibracionAbajoText.text = "Extensión: " + min.ToString("F2");
+    }
+
+    private IEnumerator CalibrarFlexion()
+    {
+        indicacionDeMovimientoText.text = "Realice el movimiento de FLEXIÓN 3 veces.";
+
+        angulosFlexion.Clear();
+        int repeticiones = 0;
+
+        while (repeticiones < 3)
+        {
+            float angulo = Vector3.Angle(pivoteCuboAzul.transform.up, pivoteCuboRojo.transform.up);
+            angulosFlexion.Add(angulo);
+            Debug.Log("Flexión: " + angulo.ToString("F2"));
+            repeticiones++;
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        float max = Mathf.Max(angulosFlexion.ToArray());
+        configuracionJuego.anguloArriba = max;
+        promedioCalibracionArribaText.text = "Flexión: " + max.ToString("F2");
+    }
+
+    public void ComenzarCalibracionEjercicio()
+    {
+        StartCoroutine(CalibrarEjercicioActual());
+    }
+
+    private IEnumerator CalibrarEjercicioActual()
+    {
+        yield return StartCoroutine(CalibrarNeutro());
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(CalibrarExtension());
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(CalibrarFlexion());
+    }
     public void SaveCalibration()
     {
         var movimientosDeMano = SettingsModelValuesRoot.nombreMovimientoValores[configuracionJuego.nombreMovimiento];
@@ -558,26 +742,28 @@ public class Giroscopio : MonoBehaviour
 
         switch (orientacion)
         {
-            case SettingsModelValuesRoot.Orientacion.ABAJO:
-                indicacionDeMovimientoText.text = "Mover la mano hacia abajo " + contadorDeMovimietos2;
-                break;
-            case SettingsModelValuesRoot.Orientacion.ARRIBA:
-                indicacionDeMovimientoText.text = "Mover la mano hacia arriba " + contadorDeMovimietos2;
-                break;
-            case SettingsModelValuesRoot.Orientacion.DERECHA:
-                indicacionDeMovimientoText.text = "Mover la mano hacia la derecha " + contadorDeMovimietos2;
-                break;
-            case SettingsModelValuesRoot.Orientacion.IZQUIERDA:
-                indicacionDeMovimientoText.text = "Mover la mano hacia izquierda " + contadorDeMovimietos2;
-                break;
-            case SettingsModelValuesRoot.Orientacion.NEUTRAL:
-                indicacionDeMovimientoText.text = "Posicion neutral " + contadorDeMovimietos2;
-                break;
+            /*  case SettingsModelValuesRoot.Orientacion.ABAJO:
+                 indicacionDeMovimientoText.text = "Mover la mano hacia abajo " + contadorDeMovimietos2;
+                 break;
+             case SettingsModelValuesRoot.Orientacion.ARRIBA:
+                 indicacionDeMovimientoText.text = "Mover la mano hacia arriba " + contadorDeMovimietos2;
+                 break;
+             case SettingsModelValuesRoot.Orientacion.DERECHA:
+                 indicacionDeMovimientoText.text = "Mover la mano hacia la derecha " + contadorDeMovimietos2;
+                 break;
+             case SettingsModelValuesRoot.Orientacion.IZQUIERDA:
+                 indicacionDeMovimientoText.text = "Mover la mano hacia izquierda " + contadorDeMovimietos2;
+                 break;
+             case SettingsModelValuesRoot.Orientacion.NEUTRAL:
+                 indicacionDeMovimientoText.text = "Posicion neutral " + contadorDeMovimietos2;
+                 break; */
         }
 
         contadorDeMovimietos2++;
 
     }
+
+
 
 
     public void CalibrarNuevamente()
@@ -632,12 +818,12 @@ public class Giroscopio : MonoBehaviour
         switch (orientacion)
         {
             case SettingsModelValuesRoot.Orientacion.ABAJO:
-                configuracionJuego.anguloAbajo = Promedio(listCalibracionesArriba, orientacion);
+                configuracionJuego.anguloAbajo = Promedio(listCalibracionesAbajo, orientacion);
                 promedioCalibracionAbajoText.text = "Abajo: " + configuracionJuego.anguloAbajo;
                 break;
             case SettingsModelValuesRoot.Orientacion.ARRIBA:
-                configuracionJuego.anguloArriba = Promedio(listCalibracionesAbajo, orientacion);
-                promedioCalibracionArribaText.text = "Arriba:  " + configuracionJuego.anguloArriba;
+                configuracionJuego.anguloAbajo = Promedio(listCalibracionesAbajo, orientacion);
+                promedioCalibracionAbajoText.text = "Arriba: " + configuracionJuego.anguloArriba;
                 break;
             case SettingsModelValuesRoot.Orientacion.IZQUIERDA:
                 configuracionJuego.anguloIzquierda = Promedio(listCalibracionesIzquierda, orientacion);
@@ -696,4 +882,24 @@ public class Giroscopio : MonoBehaviour
         }
     }
 
-}
+
+    public void CalibrarSecuencia()
+    {
+        StartCoroutine(CalibrarTodo());
+    }
+
+    IEnumerator CalibrarTodo()
+    {
+        yield return StartCoroutine(CalibrarMovimiento(SettingsModelValuesRoot.Orientacion.ARRIBA));
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(CalibrarMovimiento(SettingsModelValuesRoot.Orientacion.ABAJO));
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(CalibrarMovimiento(SettingsModelValuesRoot.Orientacion.IZQUIERDA));
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(CalibrarMovimiento(SettingsModelValuesRoot.Orientacion.DERECHA));
+    }
+
+
+
+
+}  
